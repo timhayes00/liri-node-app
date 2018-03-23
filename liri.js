@@ -1,4 +1,6 @@
 keys = require("./keys.js");
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
 require("dotenv").config();
 var request = require("request");
 var fs = require("fs");
@@ -6,10 +8,10 @@ var liriOrders;
 
 switch(process.argv[2]) {
     case `my-tweets`:
-        twitterHist();
+        twitterHistory();
         break;
     case `spotify-this-song`:
-        //code block
+        spotify();
         break;
     case 'movie-this':
         movie();
@@ -51,10 +53,22 @@ function movie(){
     });
 };
 
-function twitterHist(){
-    var twit = new twitter;
-    console.log(twit);
+function twitterHistory(){
+    var twitter = new Twitter;
+    console.log(twitter);
 };
+
+function spotify() {
+    var spotify = new Spotify(keys.spotify);
+    console.log("ignition")
+    spotify.search({ type: 'track', query: 'All the Small Things' }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+
+        console.log(data);
+    });
+}
 
 function batchRun() {
     fs.readFile("random.txt", "utf8", function (err, data){
@@ -65,11 +79,11 @@ function batchRun() {
         switch(liriOrders[0]) {
             case `my-tweets`:
                 fixFormat();
-                twitterHist();
+                twitterHistory();
                 break;
             case `spotify-this-song`:
                 fixFormat();
-                //code block
+                
                 break;
             case 'movie-this':
                 fixFormat();
