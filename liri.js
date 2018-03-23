@@ -56,17 +56,32 @@ function movie(){
 function twitterHistory(){
     var twitter = new Twitter;
     console.log(twitter);
+    //begin psuedocode
+    //once Twitter's API has been called to give me the last twenty tweets in an array
+    //name that array "arrayTweets"
+    //set up a for loop
+    //for (i = 0; arrayTweets[i] < 20; i++) {
+        //console.log(arrayTweets[i].data);
+        //console.log(arrayTweets[i].date);
+        //console.log("========================================");
+    //}
 };
 
 function spotify() {
     var spotify = new Spotify(keys.spotify);
     console.log("ignition")
-    spotify.search({ type: 'track', query: 'All the Small Things' }, function (err, data) {
+    spotify.search({ type: 'track', query: process.argv[3] }, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
-
         console.log(data);
+        //spotify isnt cooperating
+        //begin psuedocode
+        //once spotify is returning an array with artist, song title, preview of song, and the album in "data"
+        //console.log(data.artist);
+        //console.log(data.title);
+        //console.log(data.preview-link);
+        //console.log(data.album);
     });
 }
 
