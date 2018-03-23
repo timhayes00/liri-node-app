@@ -30,7 +30,10 @@ function movie(){
             movieName += "%20" + process.argv[i];
         }
     }
-    //console.log(liriOrders);
+    else{
+        movieName = "Mr%20Nobody"; // arbitrarily chosen default case if they select movie but don't pass in a title
+    }
+    //console.log("liri orders = " + liriOrders);
     if(liriOrders){
         movieName = liriOrders[0];
         for (i = 1; liriOrders[i]; i++){
